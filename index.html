@@ -19,8 +19,10 @@
     <script
       src="https://kit.fontawesome.com/dc0b793953.js"
       crossorigin="anonymous"
-    ></script>
-    <script src="src/index.js"></script>
+		></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		
+    <script src="index.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
@@ -39,12 +41,18 @@
       />
       <input type="submit" class="enter" value="Enter" />
     </form>
-    <h1 class="cityName" id="city-name">Santa Fe, NM</h1>
-    <div class="currentWeather"
+    <div class="container" id="current-city">
+        <div class="center">
+          <button>My current location</button>
+        </div>
+      </div>
+    <h2 class="cityName" id="city-name">Santa Fe, NM</h2>
+    
+    <div class="currentWeather">
     <p>
       <strong>Today</strong>
       <br />
-      <text >53℉ 
+      <text id="current-temperature">
         </text>
         <a href="#" id="celsius-link">°C</a> |
         <a href="#" id="fahrenheit-link">°F</a>
@@ -93,7 +101,5 @@
       </div>
     </div>
     <p class="info">Made by: Nicole Stewart</p>
-    <script src="src/index.js"></script>
   </body>
 </html>
-
