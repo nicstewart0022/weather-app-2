@@ -44,38 +44,41 @@ h1.innerHTML = formatDate(now);
 
 //Challenge 1: change city name to what is searched
 
-let apiKey = "b9f1b5b4a8b07e121a5baf80f5ff5702";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
-let cityName = (text.innerHTML = `${search - form.value}`);
-
-function getCity(event) {
-  event.preventDefault();
-  let input = document.querySelector("#search-form");
-  input.addEventListener("submit", getCity);
-}
-console.log(input);
-
-function displayCity(event) {
-  event.preventDefault();
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = "${cityName}";
-}
-
 function search(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-input");
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = `${searchInput.value}`;
+  let h2 = document.querySelector("h2");
+  h2.innerHTML = `${searchInput.value}`;
+  let city = `${searchInput.value}`;
+  let apiKey = "b9f1b5b4a8b07e121a5baf80f5ff5702";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(getTemperature);
 }
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
-function showTemperature(response) {
-  console.log(response.data);
+//Challenge 2: display current temp of city searched
+
+function getTemperature(response) {
+  let currentTemperature = document.querySelector("#current-temperature");
   let temperature = Math.round(response.data.main.temp);
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = `It is ${temperature}℃ in ${cityName}.`;
+  currentTemperature.innerHTML = `${temperature}°F`;
 }
 
-axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
+//Bonus: add a current location button & when clicked it uses you geolocation API
+//to get coordinates and displays city and current temperature using OpenWeather API
+
+function getGeoLocation(response) {}
+
+function retrievePosition(position) {
+  let apiKey = "b9f1b5b4a8b07e121a5baf80f5ff5702";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+  axios.get(url).then(getTemperature);
+}
+navigator.geolocation.getCurrentPosition(retrievePosition);
+
+let location = document.querySelector("#current-city");
+location.addEventListener("submit", getGeoLocation);
