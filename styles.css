@@ -15,6 +15,22 @@ form {
   display: block;
   text-align: center;
 }
+button {
+  font-size: 15px;
+  text-align: center;
+  border-radius: 20px;
+  color: #fffbe0;
+  background-color: #2994b2;
+  border: 1px solid #2994b2;
+}
+.container {
+  padding-top: 20px;
+}
+button:hover {
+  background-color: #fffbe0;
+  color: #2994b2;
+  cursor: pointer;
+}
 .unit {
   text-align: center;
   font-size: 15px;
@@ -37,6 +53,7 @@ form {
   color: #2994b2;
   cursor: pointer;
 }
+
 .city {
   background-color: #fffbe0;
   border: 1px solid #fffbe0;
